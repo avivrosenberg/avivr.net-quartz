@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "Aviv A. Rosenberg",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -72,7 +72,17 @@ const config: QuartzConfig = {
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.Latex({
+        renderEngine: "mathjax", //"mathjax", "katex"
+        customMacros: {
+          // I decided to put the macros in each file to make it more flexible to change them over time.
+        },
+        mathJaxOptions: {
+          svg: {
+            scale: 1.15,
+          },
+        },
+      }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
