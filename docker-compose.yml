@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  # A simple service to sync files from the Obsidian vault (or a subfolder) into
+  # the Quartz content folder.
+  # Set the CONTENT_SRC_DIR environment variable to the path of the Obsidian
+  # vault or subfolder. Can set it in the .env file.
+  folder-sync:
+    image: alpine:latest # Use a standard base image
+    command: >
+      sh -c "
+      apk add --no-cache rsync bash &&
+      while true; do
+        rsync -q -a --delete /src/ /dst/;
+        sleep 2;
+      done
+      "
+    volumes:
+      - ${CONTENT_SRC_DIR}:/src:ro # Mount source as read-only
+      - ./content:/dst # Mount dest with write access
+
+  # A service to build and serve the Quartz site
+  quartz-serve:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # prevent local node_modules from being mounted
+    ports:
+      - "8080:8080"
+      - "3001:3001" # for live-reload
