@@ -27,11 +27,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({ title: "Explorer2", folderClickBehavior: "link" })),
+    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
   ],
   right: [
-    // Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents({ layout: "modern" })),
+    // Component.Graph(),
     Component.Backlinks(),
   ],
 }
@@ -44,7 +44,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
   ],
   right: [],
 }

@@ -30,46 +30,57 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#fdf6e3", // base3
+          lightgray: "#eee8d5", // base2
+          gray: "#93a1a1", // base1
+          darkgray: "#586e75", // base01
+          dark: "#073642", // base02
+          secondary: "#268bd2", // blue
+          tertiary: "#2aa198", // cyan
+          highlight: "rgba(38, 139, 210, 0.15)", // blue with 15% opacity
+          textHighlight: "#b58900", // yellow
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#002b36", // base03
+          lightgray: "#073642", // base02
+          gray: "#586e75", // base01
+          darkgray: "#93a1a1", // base1
+          dark: "#fdf6e3", // base3
+          secondary: "#268bd2", // blue
+          tertiary: "#2aa198", // cyan
+          highlight: "rgba(38, 139, 210, 0.15)", // blue with 15% opacity
+          textHighlight: "#b58900", // yellow
         },
       },
     },
   },
   plugins: {
     transformers: [
+      // Custom plugin to remove the first H1 heading.
+      // In Obsidian, I write my notes with a H1 heading at the top, which I
+      // don't want to display here because the page title is already displayed
+      // by Quartz, and disabling it makes the page look bad.
+      Plugin.RemoveFirstH1(),
+      //
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "github-light",
-          dark: "github-dark",
+          light: "solarized-light",
+          dark: "solarized-dark",
         },
         keepBackground: false,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
+      Plugin.TableOfContents({
+        maxDepth: 3,
+        minEntries: 1,
+        showByDefault: false,
+        collapseByDefault: true,
+      }),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({
@@ -79,7 +90,7 @@ const config: QuartzConfig = {
         },
         mathJaxOptions: {
           svg: {
-            scale: 1.15,
+            scale: 1.1,
           },
         },
       }),

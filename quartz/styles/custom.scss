@@ -8,3 +8,34 @@ mjx-container[jax="SVG"][display="true"] {
   text-align: center !important;
   margin: 0em auto !important;
 }
+
+// Increase font size and line height for article content
+article p,
+article li {
+  font-size: 1.2em !important;
+  line-height: 1.5 !important;
+}
+
+// adjustment for nested elements
+article li p {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+@media (max-width: 480px) {
+  .me {
+    display: none;
+  }
+}
+
+@media (min-width: 480px) {
+  .me {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .welcome {
+    display: flex;
+    align-items: center;
+  }
+}
