@@ -2,11 +2,11 @@
 title: MLE, MAP and Bayesian Regression
 aliases: 
 tags:
-  - machine-learning
+  - blog/machine-learning
 related: 
 date-created: "[[2024-12-06]]"
 date-modified: "[[2025-01-14]]"
-date: 2019-10-31
+date: 2019-10-17
 enableToc: true
 ---
 

@@ -4,7 +4,7 @@ tags:
 related: 
 title: Welcome
 date-created: "[[2025-01-12]]"
-date-modified: "[[2025-01-14]]"
+date-modified: "[[2025-01-15]]"
 enableToc: false
 ---
 
@@ -14,7 +14,7 @@ enableToc: false
 
 ## Hi, I'm Aviv 👋🏻
 
-A data scientist specializing in machine learning and signal processing.
+I'm a data scientist specializing in machine learning and signal processing.
 
 I have tackled data-intensive problems across diverse domains, including cardiology (deep-learning based ECG analysis), computational biology (directional statistics for protein structure analysis), transportation (time-series processing) and quantitative finance (learning-based portfolio construction and optimization).
 
@@ -24,4 +24,4 @@ My research has been published in journals and conferences such as Nature Commun
 In addition to research, I have a strong background in software engineering from multiple technical roles, where I gained extensive experience creating robust, testable, well-designed software.
 
 - Checkout my recent [[Posts/]] and [[News/]].
-- Here's a link to [[2019-10-31 MLE, MAP and Bayesian Regression|xyz]]
+- Here's a link to [[2019-10-17 MLE, MAP and Bayesian Regression|xyz]]
