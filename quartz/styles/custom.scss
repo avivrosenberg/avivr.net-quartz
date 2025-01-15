@@ -12,14 +12,13 @@ mjx-container[jax="SVG"][display="true"] {
 // Increase font size and line height for article content
 article p,
 article li {
-  font-size: 1.2em !important;
+  font-size: 1.2rem !important;
   line-height: 1.5 !important;
 }
 
-// adjustment for nested elements
-article li p {
-  font-size: inherit !important;
-  line-height: inherit !important;
+article code {
+  font-size: 1rem !important;
+  /* line-height: 1.5 !important; */
 }
 
 @media (max-width: 480px) {
