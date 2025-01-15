@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import * as AvivsPlugins from "./quartz/plugins/avivr"
 
 /**
  * Quartz 4.0 Configuration
@@ -24,8 +25,11 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        // header: "Schibsted Grotesk",
+        // body: "Source Sans Pro",
+        header: "Roboto Flex",
+        body: "Kumbh Sans",
+        // body: "Roboto Flex",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -60,7 +64,8 @@ const config: QuartzConfig = {
       // In Obsidian, I write my notes with a H1 heading at the top, which I
       // don't want to display here because the page title is already displayed
       // by Quartz, and disabling it makes the page look bad.
-      Plugin.RemoveFirstH1(),
+      AvivsPlugins.RemoveFirstH1(),
+      AvivsPlugins.AddCustomResources(),
       //
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
