@@ -1,6 +1,6 @@
 import { QuartzTransformerPlugin } from "../types"
 import { visit } from "unist-util-visit"
-import { Root, Heading } from "mdast"
+import { Root, Heading, Text } from "mdast"
 
 export const RemoveFirstH1: QuartzTransformerPlugin = () => {
   return {
