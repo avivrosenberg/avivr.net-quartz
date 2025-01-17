@@ -38,3 +38,9 @@ article code {
     align-items: center;
   }
 }
+
+// In case an image should be inverted, add "|invert" to the alt attribute, which can be
+// controlled in obsidian via the image text.
+[saved-theme="dark"] img[alt*="darkmodeinvert"] {
+  filter: invert(100%);
+}
