@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   # A simple service to sync files from the Obsidian vault (or a subfolder) into
   # the Quartz content folder.
@@ -18,6 +16,7 @@ services:
     volumes:
       - ${CONTENT_SRC_DIR}:/src:ro # Mount source as read-only
       - ./content:/dst # Mount dest with write access
+    stop_grace_period: 2s
 
   # A service to build and serve the Quartz site
   quartz-serve:
