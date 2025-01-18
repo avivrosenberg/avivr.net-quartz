@@ -10,7 +10,7 @@ services:
       apk add --no-cache rsync bash &&
       while true; do
         rsync -q -a --delete /src/ /dst/;
-        sleep 2;
+        sleep 4;
       done
       "
     volumes:
