@@ -1,13 +1,14 @@
 ---
 aliases: 
 tags:
-  - blog
+  - dl-tutorial
+  - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-01-16]]"
+date-modified: "[[2025-01-18]]"
+title: Logistic regression from scratch
 date: 2019-10-31
 enableToc: true
-title: Logistic regression from scratch
 ---
 
 $$
@@ -27,36 +28,37 @@ $$
 \newcommand{\given}[]{~\middle\vert~}
 $$
 
-# 2019-10-31 Logistic Regression
+# Logistic Regression
 
 ## Introduction
 
-TODO: Write intro with some motivation.
+Logistic regression (LR) is a fundamental algorithm in machine learning and statistics. Despite its name, this is actually a **classification** model, where we're trying to categorize data into two or more groups given some input features. Due to its simplicity, LR is widely used in many applications, especially for binary classification such as detecting whether an email is spam or not.
 
-In this tutorial, we will cover:
+This post is a hands-on tutorial. We will build logistic regression from scratch, focusing on both the theory and implementation. Along the way, we will derive the logistic regression model based on maximum likelihood estimation.
 
-* Basics of supervised learning
-    * Definitions
-    * Basics of optimization
-    * Types of errors
-* Classic ML example: Binary logistic regression from scratch using numpy (**self study**)
-* Multiclass logistic regression from scratch with PyTorch and autograd
-    * Optimization
-    * Writing training loops
+We'll implement the approach from scratch twice: first using NumPy to understand the underlying mechanics, and then using PyTorch to also leverage automatic differentiation. We'll also extend the binary logistic regression model to handle multiclass problems using the softmax function.
+
+This post should help you will understand the mathematical foundations of logistic regression, how it models probabilities for classification, and the steps involved in implementing it from scratch using NumPy and PyTorch. You will also explore its strengths and limitations in practical applications.
+See also my [[2019-10-17 MLE, MAP and Bayesian Regression#Supervised learning|previous post]] for a broader intro about supervised learning and maximum likelihood estimation (which will be relevant here).
+
+> [!info]- Note
+> This post is based on materials created by [[About me|me]] for the [CS236781 Deep Learning](https://vistalab-technion.github.io/cs236781/semesters/w22/info/) course at the Technion between Winter 2019 and Spring 2022. To re-use, please provide attribution and link to this page.
 
 ## Binary Logistic Regression
 
-Despite its name, this is actually a **classification** model, where we're trying to classify data into 2 classes. See also my [[2019-10-17 MLE, MAP and Bayesian Regression#Supervised learning|previous post]] for a broader intro about supervised learning and maximum likelihood estimation (which will be relevant here).
+Given inputs $\vec{x}^i \in \set{R}^D$ and targets $y^i \in \{0,1\}$, the LR model is
+$$
+\hat{y} = h(\vec{x}) = \sigma(\vectr{w}\vec{x}+b),
+$$
+where $\sigma(\vec{z})$ is the **logistic function**,
+$$
+\sigma(\vec{z}) = \frac{1}{1+e^{-\vec{z}}}.
+$$
+This function maps the real line onto $[0,1]$.
 
-Here our setup will be,
-* Inputs: $\vec{x}^i \in \set{R}^D$
-* Targets: $y^i \in \{0,1\}$
-* Model: $\hat{y} = h(\vec{x}) = \sigma(\vectr{w}\vec{x}+b)$, where $\sigma(\vec{z})$ is the **logistic function**:
-    $$\sigma(\vec{z}) = \frac{1}{1+e^{-\vec{z}}}.$$
-    This function maps the real line onto $[0,1]$.
-* Probabilistic interpretation: $\hat{y}=P(\rvar{Y}=1|\rvec{X}=\vec{x})$. In other words, we're modeling the conditional probability to observe $y=1$ given an input $\vec{x}$.
+Notice how the LR model is actually a linear regression model wrapped in a sigmoid, to squash the output into the desired range. From a probabilistic perspective, we're modeling the conditional probability to observe $y=1$ given an input $\vec{x}$, i.e. $\hat{y}=P(\rvar{Y}=1|\rvec{X}=\vec{x})$.
 
-Let's take a look at the logistic function:
+Let's take a look at the logistic function itself:
 ```python
 def logistic(z):
     return 1 / (1 + np.exp(-z))
@@ -68,7 +70,7 @@ plt.plot(x, y_hat, label='$\sigma(z)$')
 plt.grid(True); plt.xlabel('z'); plt.legend(); plt.title('The logistic function');
 ```
 
-![png](dl-tut2-output_35_0.png)
+![png|darkmodeinvert](dl-tut2-output_35_0.png)
 
 To fit the model, we'll minimize the **negative log-likelihood** (equivalent to maximizing likelihood, i.e. MLE) of the parameters $\vec{w}$:
 $$
@@ -95,7 +97,7 @@ The "cross" here is between the distribution of the samples $y^i$ and the distri
 
 In this case there's no closed form solution, so we'll need to train the model using some optimization scheme. Since this loss is **convex**, gradient-based approach should lead us to the global optimum.
 
-Let's plot this loss function, to convince ourselves of its convexity.
+We can plot this loss function, to convince ourselves of its convexity.
 
 ```python
 loss_y0 = -np.log(1-y_hat)
@@ -105,7 +107,7 @@ plt.plot(y_hat, loss_y1, label='$\ell(y=1,\hat{y})$')
 plt.grid(True); plt.xlabel('$\hat{y}$'); plt.legend(); plt.title('Cross entropy loss');
 ```
 
-![png](dl-tut2-output_41_0.png)
+![png|darkmodeinvert](dl-tut2-output_41_0.png)
 
 Next, to apply gradient descent, we'll need to know the gradient of the loss w.r.t. the parameters $\vec{w}$. Let's quickly derive this ourselves.
 
@@ -471,7 +473,7 @@ plt.legend(); plt.grid(True);
 plt.title('Train loss');
 ```
 
-![png](dl-tut2-output_56_0.png)
+![png|darkmodeinvert](dl-tut2-output_56_0.png)
 
 On this toy dataset, our performance is quite good. This is just a useful sanity check that we implemented the model correctly.
 ```python
@@ -588,7 +590,7 @@ plot_utils.dataset_first_n(ds_train, 10, cmap='gray');
 
     x0: torch.Size([1, 28, 28]), y0: 5
     
-![png](dl-tut2-output_71_1.png)
+![png|darkmodeinvert](dl-tut2-output_71_1.png)
 
 Note that when training, we're actually working with **batches** of samples, as we'll be using stochastic gradient descent (SGD). So each input image is actually a four-dimensional tensor:
 
@@ -789,9 +791,7 @@ By calling `.backward()` from the final loss tensor, pytorch automatically popul
 
 ### Training
 
-The optimization will be as before, but now we'll take the gradients from the `grad` property of our parameter tensors.
-
-Therefore, the optimizer only needs access to the parameter tensors from the model. In fact,`pytorch`'s `Optimizer` classes work in the same way.
+The optimization will be as before, but now we'll take the gradients from the `grad` property of our parameter tensors. Therefore, the optimizer needs access **only** to the parameter tensors from the model. In fact,`pytorch`'s `Optimizer` classes work in the same way.
 
 As before, we'll implement this from scratch using only pytorch tensors and no other build-in features.
 
@@ -948,7 +948,3 @@ for e in range(epochs):
   * Cross entropy loss
 
     However, the purpose here was to show an (almost) from-scratch implementation using only tensors, in order to see whats "under the hood" (more or less) of the PyTorch functions.
-
-## References
-
-This post is based on materials I created for the [CS236781 Deep Learning](https://vistalab-technion.github.io/cs236781/semesters/w22/) course at the Technion between Winter 2019 and Spring 2022. To re-use, please provide attribution and link to this page.

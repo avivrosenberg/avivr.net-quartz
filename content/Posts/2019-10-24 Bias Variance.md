@@ -1,6 +1,7 @@
 ---
 aliases: 
-tags: 
+tags:
+  - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
 date-modified: "[[2025-01-12]]"
