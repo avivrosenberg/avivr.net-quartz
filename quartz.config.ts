@@ -1,6 +1,7 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 import * as AvivsPlugins from "./quartz/plugins/avivr"
+import { colorschemes } from "./quartz/avivr/colorschemes"
 
 /**
  * Quartz 4.0 Configuration
@@ -33,28 +34,8 @@ const config: QuartzConfig = {
         code: "IBM Plex Mono",
       },
       colors: {
-        lightMode: {
-          light: "#fdf6e3", // base3
-          lightgray: "#eee8d5", // base2
-          gray: "#93a1a1", // base1
-          darkgray: "#586e75", // base01
-          dark: "#073642", // base02
-          secondary: "#268bd2", // blue
-          tertiary: "#2aa198", // cyan
-          highlight: "rgba(38, 139, 210, 0.15)", // blue with 15% opacity
-          textHighlight: "#b58900", // yellow
-        },
-        darkMode: {
-          light: "#002b36", // base03
-          lightgray: "#073642", // base02
-          gray: "#586e75", // base01
-          darkgray: "#93a1a1", // base1
-          dark: "#fdf6e3", // base3
-          secondary: "#268bd2", // blue
-          tertiary: "#2aa198", // cyan
-          highlight: "rgba(38, 139, 210, 0.15)", // blue with 15% opacity
-          textHighlight: "#b58900", // yellow
-        },
+        lightMode: colorschemes["Solarized Light"],
+        darkMode: colorschemes["Solarized Dark"],
       },
     },
   },
@@ -84,7 +65,7 @@ const config: QuartzConfig = {
         maxDepth: 3,
         minEntries: 1,
         showByDefault: false,
-        collapseByDefault: true,
+        collapseByDefault: false,
       }),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
