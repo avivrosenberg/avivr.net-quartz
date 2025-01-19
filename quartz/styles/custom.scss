@@ -55,3 +55,11 @@ img[alt~="center"] {
   display: block;
   margin: 0 auto;
 }
+
+// My custom conatainer for multiple components elements
+.multi-component-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
