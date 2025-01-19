@@ -1,0 +1,92 @@
+.navbar {
+  // background-color: var(--site-background-color); /* Matches site's background */
+  /* color: white; */
+  padding: 1rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: flex-start;
+  position: relative; /* Ensure positioning for child elements */
+}
+
+.nav-menu {
+  display: flex; /* Default behavior for desktop */
+  flex-direction: column; /* Stack links vertically */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 200x; /* Set a fixed width for the menu */
+}
+
+.nav-menu li {
+  //margin-bottom: 1rem; /* Add spacing between links */
+}
+
+.nav-menu li:last-child {
+  //margin-bottom: 0; /* Remove margin for last link */
+}
+
+.nav-menu a {
+  // color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block; /* Make the entire area clickable */
+}
+
+.menu-icon {
+  display: none; /* Hide hamburger menu by default (desktop) */
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-icon {
+    display: block; /* Show hamburger menu on mobile */
+    z-index: 1001; /* Ensure it stays above the menu */
+    position: relative; /* Position it properly for stacking */
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    display: none; /* Hide menu by default on mobile */
+    flex-direction: column; /* Stack links vertically */
+    position: absolute; /* Position relative to parent container */
+    top: 100%; /* Place below the hamburger button */
+    right: 0; /* Align to the right edge */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    border-radius: 8px; /* Rounded corners for floating effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for floating effect */
+    z-index: 1000; /* Ensure it floats above other content */
+    width: 200px; /* Set a fixed width to prevent wrapping of links */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .nav-menu.active {
+    display: flex; /* Show menu when active on mobile */
+  }
+
+  .nav-menu li {
+    margin-bottom: 1rem; /* Add spacing between links in mobile view */
+    text-align: left; /* Align links to the left inside the box */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nav-menu li:last-child {
+    margin-bottom: 0; /* Remove margin for last link in mobile view */
+  }
+
+  .nav-menu a:hover {
+    color: #04aa6d; /* Highlight link on hover (optional) */
+    text-decoration: underline;
+  }
+}
