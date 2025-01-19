@@ -16,6 +16,13 @@ export default ((components?: QuartzComponent[]) => {
       )
     }
 
+    const css = components.map((Component) => Component.css).join("\n")
+    const scriptAfter = components.map((Component) => Component.afterDOMLoaded).join("\n")
+    const scriptBefore = components.map((Component) => Component.beforeDOMLoaded).join("\n")
+    MultiComponentContainer.css = css
+    MultiComponentContainer.afterDOMLoaded = scriptAfter
+    MultiComponentContainer.beforeDOMLoaded = scriptBefore
+
     return MultiComponentContainer
   } else {
     return () => <></>
