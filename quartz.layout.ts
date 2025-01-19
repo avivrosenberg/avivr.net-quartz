@@ -23,9 +23,10 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
+    AvivsComponents.MultiComponentContainer([Component.Search(), Component.Darkmode()]),
     Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
+    // Component.Explorer({ folderClickBehavior: "link" }),
+    // AvivsComponents.Navbar(),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents({ layout: "modern" })),
@@ -42,7 +43,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
+    // Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
   ],
   right: [],
 }
