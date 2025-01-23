@@ -1,4 +1,5 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
 // put your custom CSS here!
 
@@ -60,6 +61,11 @@ img[alt~="center"] {
 .multi-component-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
+}
+
+@media all and ($mobile) {
+  #search-button > p {
+    display: none;
+  }
 }
