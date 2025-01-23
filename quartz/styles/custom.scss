@@ -65,7 +65,11 @@ img[alt~="center"] {
 }
 
 @media all and ($mobile) {
-  #search-button > p {
-    display: none;
+  // Customize search bar on mobile to take up less space
+  #search-button {
+    background-color: transparent;
+    p {
+      display: none;
+    }
   }
 }
