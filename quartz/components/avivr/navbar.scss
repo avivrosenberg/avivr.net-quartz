@@ -1,7 +1,9 @@
+@use "../../styles/variables.scss" as *;
+
 .navbar {
   // background-color: var(--site-background-color); /* Matches site's background */
   /* color: white; */
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .navbar-container {
@@ -47,7 +49,7 @@
   background-color: white;
 }
 
-@media screen and (max-width: 768px) {
+@media all and ($mobile) {
   .menu-icon {
     display: block; /* Show hamburger menu on mobile */
     z-index: 1001; /* Ensure it stays above the menu */
