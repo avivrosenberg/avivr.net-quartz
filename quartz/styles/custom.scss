@@ -73,3 +73,9 @@ img[alt~="center"] {
     }
   }
 }
+
+// Fixes alignment issue in News page due to dates
+// Maybe there's a better way
+.meta {
+  font-family: monospace;
+}
