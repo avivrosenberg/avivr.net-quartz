@@ -5,6 +5,7 @@ related:
 date-created: "[[2025-01-16]]"
 date-modified: "[[2025-01-16]]"
 title: About me
+permalink: About
 ---
 
 # About
