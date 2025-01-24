@@ -1,10 +1,10 @@
 ---
 aliases: 
-tags: 
+tags: []
 title: "New paper in PNAS: structural biology"
 date: 2023-10-27
 date-created: "[[2023-11-05]]"
-date-modified: "[[2025-01-14]]"
+date-modified: "[[2025-01-24]]"
 ---
 
 #
