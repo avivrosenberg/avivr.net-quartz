@@ -12,6 +12,8 @@ export const sharedPageComponents: SharedLayout = {
   footer: AvivsComponents.Footer({}),
 }
 
+const navbarLinks = { Home: "/", About: "/About", Posts: "/Posts", News: "/News" }
+
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
@@ -25,7 +27,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     AvivsComponents.MultiComponentContainer([Component.Search(), Component.Darkmode()]),
     AvivsComponents.Navbar({
-      links: { Home: "/", About: "/About", Posts: "/Posts", News: "/News" },
+      links: navbarLinks,
     }),
     // Component.Search(),
     // Component.Darkmode(),
@@ -45,7 +47,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     AvivsComponents.MultiComponentContainer([Component.Search(), Component.Darkmode()]),
-    AvivsComponents.Navbar(),
+    AvivsComponents.Navbar({ links: navbarLinks }),
     // Component.Search(),
     // Component.Darkmode(),
     // Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
