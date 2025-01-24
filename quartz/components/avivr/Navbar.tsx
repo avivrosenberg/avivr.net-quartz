@@ -1,15 +1,17 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
-import { Darkmode, Search } from ".."
 
 import styles from "./navbar.scss"
 
 // @ts-ignore
 import script from "./navbar.inline"
 
-export default (() => {
+interface Options {
+  links: Record<string, string>
+}
+
+export default ((opts?: Options) => {
   function NavBar({ displayClass, cfg }: QuartzComponentProps) {
-    // const DarkmodeInstance = Darkmode()
-    // const SearchInstance = Search()
+    const links = opts?.links ?? []
 
     return (
       <nav className={`navbar ${displayClass}`}>
@@ -20,19 +22,13 @@ export default (() => {
             <span className="bar"></span>
           </div>
           <ul className="nav-menu" id="navMenu">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/About-me">About</a>
-            </li>
-            <li>
-              <a href="/posts">Posts</a>
-            </li>
+            {Object.entries(links).map(([text, link]) => (
+              <li>
+                <a href={link}>{text}</a>
+              </li>
+            ))}
           </ul>
         </div>
-        {/* <DarkmodeInstance displayClass={displayClass} cfg={cfg} /> */}
-        {/* <SearchInstance displayClass={displayClass} cfg={cfg} /> */}
       </nav>
     )
   }

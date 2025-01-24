@@ -24,7 +24,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     AvivsComponents.MultiComponentContainer([Component.Search(), Component.Darkmode()]),
-    AvivsComponents.Navbar(),
+    AvivsComponents.Navbar({
+      links: { Home: "/", About: "/About", Posts: "/Posts", News: "/News" },
+    }),
     // Component.Search(),
     // Component.Darkmode(),
     // Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link" })),
