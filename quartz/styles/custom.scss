@@ -74,8 +74,18 @@ img[alt~="center"] {
   }
 }
 
-// Fixes alignment issue in News page due to dates
-// Maybe there's a better way
-.meta {
-  font-family: monospace;
+// Fixes alignment issue in list pages (Posts, News) due to dates
+li.section-li {
+  .section {
+    // Sets the width of the date column to have a minimum width of 8em
+    // This way the second column always starts at the same position
+    grid-template-columns: minmax(8em, 6em) 3fr 1fr;
+  }
+  .meta {
+    // This make the dates monospace. It's also solves the alignmen issue
+    // but is not required if using the above grid-template-columns fix.
+    // I just kept it because it looks nice.
+    font-family: monospace;
+    font-weight: bold;
+  }
 }
