@@ -22,21 +22,15 @@ article code {
   /* line-height: 1.5 !important; */
 }
 
-@media (max-width: 480px) {
-  .me {
-    display: none;
-  }
-}
+// Tweaks for bio pic
+img[alt*="about_bio_pic"] {
+  max-width: 30%;
+  border-radius: 2em;
 
-@media (min-width: 480px) {
-  .me {
-    width: 50%;
-    padding: 10px;
-  }
-
-  .welcome {
-    display: flex;
-    align-items: center;
+  // Float to the right of the text in desktop mode
+  @media all and not ($mobile) {
+    float: right;
+    margin: 0em 0.5em;
   }
 }
 

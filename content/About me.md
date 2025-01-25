@@ -3,16 +3,16 @@ aliases:
 tags: 
 related: 
 date-created: "[[2025-01-16]]"
-date-modified: "[[2025-01-16]]"
+date-modified: "[[2025-01-25]]"
 title: About me
 permalink: About
 ---
 
 # About
 
-![[aviv_06b.jpg|250]]
-
 ## Hi, I'm Aviv 👋🏻
+
+![[aviv_06b.jpg|about_bio_pic]]
 
 I'm a data scientist specializing in machine learning and signal processing.
 
