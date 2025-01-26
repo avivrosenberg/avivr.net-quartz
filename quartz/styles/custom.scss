@@ -76,10 +76,15 @@ li.section-li {
     grid-template-columns: minmax(8em, 6em) 3fr 1fr;
   }
   .meta {
-    // This make the dates monospace. It's also solves the alignmen issue
+    // This make the dates monospace. It's also solves the alignment issue
     // but is not required if using the above grid-template-columns fix.
     // I just kept it because it looks nice.
     font-family: monospace;
     font-weight: bold;
   }
+}
+
+// Make the table of contents larger (only shows on desktop)
+.toc.desktop-only {
+  max-height: 70%;
 }
