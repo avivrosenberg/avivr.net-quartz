@@ -10,15 +10,16 @@ import { colorschemes } from "./quartz/avivr/colorschemes"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Aviv A. Rosenberg",
+    pageTitle: "Q.99",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "google",
+      tagId: "G-0E7V13KGS6",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "avivr.net",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     generateSocialImages: false,
@@ -95,6 +96,7 @@ const config: QuartzConfig = {
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.NotFoundPage(),
+      Plugin.CNAME(),
     ],
   },
 }
