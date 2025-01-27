@@ -10,7 +10,7 @@ import { colorschemes } from "./quartz/avivr/colorschemes"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Q.99",
+    pageTitle: "avivr.net",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,

@@ -20,6 +20,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.TagList(),
+    // AvivsComponents.ConditionalComponent(Component.ContentMeta(), { notOnPages: ["index"] }),
     Component.ContentMeta(),
   ],
   left: [
@@ -36,7 +37,7 @@ export const defaultContentPageLayout: PageLayout = {
   right: [
     Component.DesktopOnly(Component.TableOfContents({ layout: "modern" })),
     // Component.Graph(),
-    Component.Backlinks(),
+    AvivsComponents.ConditionalComponent(Component.Backlinks(), { notOnPages: ["About-me"] }),
   ],
 }
 
