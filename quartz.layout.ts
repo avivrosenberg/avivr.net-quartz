@@ -2,6 +2,9 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import * as AvivsComponents from "./quartz/components/avivr"
 
+const navbarLinks = { Home: "/", About: "/About", Posts: "/Posts", News: "/News" }
+const simplePages = ["index", "About-me"]
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -12,16 +15,19 @@ export const sharedPageComponents: SharedLayout = {
   footer: AvivsComponents.Footer({}),
 }
 
-const navbarLinks = { Home: "/", About: "/About", Posts: "/Posts", News: "/News" }
-
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
-    Component.ArticleTitle(),
+
+    AvivsComponents.ConditionalComponent(Component.ArticleTitle(), {
+      notOnPages: simplePages,
+    }),
     Component.TagList(),
-    // AvivsComponents.ConditionalComponent(Component.ContentMeta(), { notOnPages: ["index"] }),
-    Component.ContentMeta(),
+    AvivsComponents.ConditionalComponent(Component.ContentMeta(), {
+      notOnPages: simplePages,
+    }),
+    // Component.ContentMeta(),
   ],
   left: [
     Component.PageTitle(),
@@ -37,7 +43,7 @@ export const defaultContentPageLayout: PageLayout = {
   right: [
     Component.DesktopOnly(Component.TableOfContents({ layout: "modern" })),
     // Component.Graph(),
-    AvivsComponents.ConditionalComponent(Component.Backlinks(), { notOnPages: ["About-me"] }),
+    AvivsComponents.ConditionalComponent(Component.Backlinks(), { notOnPages: simplePages }),
   ],
 }
 
