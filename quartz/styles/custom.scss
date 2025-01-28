@@ -25,12 +25,12 @@ article code {
 // Tweaks for bio pic
 img[alt*="about_bio_pic"] {
   max-width: 30%;
-  border-radius: 2em;
+  border-radius: 1em;
 
   // Float to the right of the text in desktop mode
   @media all and not ($mobile) {
     float: right;
-    margin: 0em 0.5em;
+    margin: 0em 1em;
   }
 }
 
@@ -95,4 +95,9 @@ li.section-li {
 
 .content-meta {
   font-style: italic;
+}
+
+.tags {
+  font-size: 0.9em;
+  font-family: monospace;
 }
