@@ -25,4 +25,4 @@ During my PhD at the [Technion Computer Science Faculty](https://cs.technion.ac.
 - Creating new tools for analyzing data distributions in high-dimensions [](https://arxiv.org/abs/2205.14977).
 
 %%industry experience%%
-Over the years, I've also worked in various industry roles. Currently, I'm a researcher at fintech startup, [Sibylla](https://sibylla.io), where I develop machine-learning-based algorithms for algorithmic trading.
+Over the years, I've also worked in various industry roles. Currently, I'm a researcher at [Sibylla](https://sibylla.io), a fintech startup, where I develop machine-learning-based strategies for portfolio construction in equity markets.
