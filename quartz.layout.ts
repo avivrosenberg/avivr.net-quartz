@@ -23,11 +23,10 @@ export const defaultContentPageLayout: PageLayout = {
     AvivsComponents.ConditionalComponent(Component.ArticleTitle(), {
       notOnPages: simplePages,
     }),
-    Component.TagList(),
+    AvivsComponents.ConditionalComponent(Component.TagList(), { notOnPages: simplePages }),
     AvivsComponents.ConditionalComponent(Component.ContentMeta(), {
       notOnPages: simplePages,
     }),
-    // Component.ContentMeta(),
   ],
   left: [
     Component.PageTitle(),
