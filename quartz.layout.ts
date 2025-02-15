@@ -2,7 +2,12 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import * as AvivsComponents from "./quartz/components/avivr"
 
-const navbarLinks = { Home: "/", About: "/About", Posts: "/Posts", News: "/News" }
+const navbarLinks = {
+  //Home: "/",
+  "about/": "/About",
+  "posts/": "/Posts",
+  "news/": "/News",
+}
 const simplePages = ["index", "About-me"]
 
 // components shared across all pages

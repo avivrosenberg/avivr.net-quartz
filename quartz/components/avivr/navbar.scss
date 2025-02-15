@@ -30,10 +30,19 @@
 }
 
 .nav-menu a {
-  // color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
   display: block; /* Make the entire area clickable */
+}
+
+// Set fonts for the navbar
+.nav-menu a {
+  font-family: monospace;
+  font-size: 150%;
+}
+.page-title {
+  // This is not part of the navbar, but visually it should match
+  font-family: monospace;
 }
 
 .menu-icon {
