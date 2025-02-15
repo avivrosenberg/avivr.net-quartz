@@ -46,7 +46,7 @@ img[alt*="about_bio_pic"] {
 }
 
 // Align images in the center
-img[alt~="center"] {
+p img {
   display: block;
   margin: 0 auto;
 }
