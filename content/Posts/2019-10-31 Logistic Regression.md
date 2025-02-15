@@ -5,7 +5,7 @@ tags:
   - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-01-18]]"
+date-modified: "[[2025-01-28]]"
 title: Logistic regression from scratch
 date: 2019-10-31
 enableToc: true
@@ -41,7 +41,7 @@ We'll implement the approach from scratch twice: first using NumPy to understand
 This post should help you will understand the mathematical foundations of logistic regression, how it models probabilities for classification, and the steps involved in implementing it from scratch using NumPy and PyTorch. You will also explore its strengths and limitations in practical applications.
 See also my [[2019-10-17 MLE, MAP and Bayesian Regression#Supervised learning|previous post]] for a broader intro about supervised learning and maximum likelihood estimation (which will be relevant here).
 
-> [!info]- Note
+> [!cite]- References
 > This post is based on materials created by [[About me|me]] for the [CS236781 Deep Learning](https://vistalab-technion.github.io/cs236781/semesters/w22/info/) course at the Technion between Winter 2019 and Spring 2022. To re-use, please provide attribution and link to this page.
 
 ## Binary Logistic Regression
