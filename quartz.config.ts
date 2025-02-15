@@ -76,9 +76,7 @@ const config: QuartzConfig = {
           // I decided to put the macros in each file to make it more flexible to change them over time.
         },
         mathJaxOptions: {
-          svg: {
-            scale: 1.1,
-          },
+          svg: {},
         },
       }),
     ],

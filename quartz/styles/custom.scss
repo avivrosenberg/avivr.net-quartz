@@ -8,6 +8,11 @@ mjx-container[jax="SVG"][display="true"] {
   display: block;
   text-align: center !important;
   margin: 0em auto !important;
+
+  // Increase math font size on desktop
+  @media all and not ($mobile) {
+    font-size: 110% !important;
+  }
 }
 
 // Increase font size and line height for article content
