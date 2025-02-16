@@ -5,7 +5,7 @@ tags:
   - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-01-14]]"
+date-modified: "[[2025-02-15]]"
 date: 2019-10-17
 enableToc: true
 ---
@@ -331,10 +331,10 @@ The classic machine learning task of regression, often viewed as merely fitting 
 
 When taking this view, we need to contend with (at least) three common approaches for fitting the parameters of this distribution. Maximum Likelihood Estimation (MLE), Maximum A Posteriori (MAP), and Bayesian regression. In this post, we saw how these techniques are all interrelated within the same probabilistic framework.
 
-MLE focuses on finding parameters that maximize the likelihood of the observed data, while MAP extends MLE to incorporate prior beliefs about the model parameters. We saw how under some reasonable assumptions, MAP naturally leads to L2 regularization (AKA weight decay in other contexts). By incorporating a prior, MAP mitigates the tendency of MLE to overfit. Bayesian regression takes this a step further by accounting for the full posterior distribution of the parameters, whereas MLE and MAP only consider a single point on this distribution.
+MLE focuses on finding parameters that maximize the likelihood of the observed data, while MAP extends MLE to incorporate prior beliefs about the model parameters. We saw how under some reasonable assumptions, MAP naturally leads to L2 regularization (known as *weight decay* in other contexts). By incorporating a prior, MAP mitigates the tendency of MLE to overfit. Bayesian regression takes this a step further by accounting for the full posterior distribution of the parameters, whereas MLE and MAP only consider a single point on this distribution.
 
 ## References
 
 The following sources helped me understand these topics.
 * Pattern Recognition and Machine Learning (Bishop, 2006)
-* Murphy 2012, machine learning: A Probabilistic Perspective (Murphy, 2012)
+* Machine learning: A Probabilistic Perspective (Murphy, 2012)
