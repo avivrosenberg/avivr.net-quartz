@@ -5,8 +5,8 @@ tags:
   - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-01-28]]"
-title: Logistic regression from scratch
+date-modified: "[[2025-02-18]]"
+title: Multi-class logistic regression
 date: 2019-10-31
 enableToc: true
 ---
@@ -95,7 +95,7 @@ $$
 
 The "cross" here is between the distribution of the samples $y^i$ and the distribution of the predictions $\hat{y}^i$.
 
-In this case there's no closed form solution, so we'll need to train the model using some optimization scheme. Since this loss is **convex**, gradient-based approach should lead us to the global optimum.
+In this case, there's no closed form solution, so we'll need to train the model using some optimization scheme. Since this loss is **convex**, the gradient-based approach should lead us to the global optimum.
 
 We can plot this loss function, to convince ourselves of its convexity.
 
@@ -132,15 +132,15 @@ $$
 
 ## Part 1: Binary Logistic Regression with numpy
 
-As a warm up, we'll start by implementing this algorithm and training it from scratch using just `numpy` (and a toy dataset from `sklearn`).
+As a warm-up, we'll start by implementing this algorithm and training it from scratch using just `numpy` (and a toy dataset from `sklearn`).
 
-This is a classic and very simple example of implementing and training a machine learning algorithm. By first using only `numpy`, we get to see the barebone details without the help of any fancy machine-learning library.
+This is a classic and elementary example of implementing and training a machine learning algorithm. By first using only `numpy`, we get to see the barebone details without the help of any fancy machine-learning library.
 
 ### Dataset
 
 The `scikit-learn` library comes with a few [toy datasets](http://scikit-learn.org/stable/datasets/index.html#toy-datasets) that are fun to quickly train small models on.
 
-As an example we'll load the Wisconsin-breast cancer database:
+As an example, we'll load the Wisconsin-breast cancer database:
 * 569 samples of cancer patients
 * 30 features: various properties of tumor cells extracted from images
 * 2 classes: Tumor is either Benign or Malignant
@@ -382,7 +382,7 @@ print(f'test : X={X_test.shape} y={y_test.shape}')
     train: X=(398, 30) y=(398,)
     test : X=(171, 30) y=(171,)
 
-And finally we'll standardize the features.
+And finally, we'll standardize the features.
 ```python
 
 # Note: each feature is standardized individually:
@@ -495,7 +495,7 @@ What if we actually have $C$ classes? Can we still use logistic regression?
 
 A naïve approach: train $C$ binary logistic regression classifiers, for example in a One vs. Rest scheme, and then predict based on the classifier returning the greatest probability.
 
-One major drawback of this approach is that it doesn't model a probability distribution over the possible classes, $P_{\vec{Y}|\vec{X}}$. For example, a sample might be classified as class A with probability $0.8$ and class $B$ with $0.7$ since nothing constrains the different classifiers. Also, without *calibrating* each model, their raw scores cannot reliably be compared even though they're in the same range.
+One major drawback of this approach is that it doesn't model a probability distribution over the possible classes, $P_{\vec{Y}|\vec{X}}$. For example, a sample might be classified as class A with probability $0.8$ and class $B$ with $0.7$ since nothing constrains the different classifiers. Moreover, without *calibrating* each model, their raw scores cannot reliably be compared even though they're in the same range.
 
 Let's introduce a better approach, which extends logistic regression to the multi-class setting.
 
@@ -521,12 +521,12 @@ where,
 
 Probabilistic interpretation: $\hat{y}_j = P(\rvar{Y}=j|\rvec{X}=\vec{x})$, i.e. we model the discrete probability distribution over the possible classes.
 
-While not very powerful on it's own, this type of model is commonly found at the end of deep neural networks performing classification tasks.
+While not very powerful on its own, this type of model is commonly found at the end of deep neural networks performing classification tasks.
 
-The target variable is usually specified simply as an index of the correct class.
-However, to train this model we need our labels to also be discrete probability distributions instead of simply a label.
+The target variable is usually specified as an index of the correct class.
+However, to train this model, we need our labels to also be discrete probability distributions instead of simply a label.
 
-We'll transform our labels to a 1-hot encoded vector corresponding to a singleton distribution (all mass is on a single class). For example, if $y^i=j$ then we'll create
+We'll transform our labels to a 1-hot encoded vector corresponding to a singleton distribution (all mass is on a single class). For example, if $y^i=j$, then we'll create
 $$
 \vec{y}^i = [0,\dots,0,\underbrace{1}_{j\mathrm{th\ component}},0,\dots,0]^\top,
 $$
@@ -540,13 +540,13 @@ $$
 \ell(\vec{y}, \hat{\vec{y}}) = - \vectr{y} \log(\hat{\vec{y}})
 $$
 
-Note that only the probability assigned to the correct class affects the loss, because $\vec{y}$ here is zero in all entries except for one.
+Note that only the probability assigned to the correct class affects the loss because $\vec{y}$ here is zero in all entries except for one.
 
 Minimizing this cross entropy can be interpreted as trying to move the probability distribution of model predictions towards the singleton distribution of the appropriate class.
 
 ### Dataset
 
-This time we'll tackle an image classification task, the MNIST database of handwritten digits. These days this is also considered a toy dataset, even though it was widely used in the past to benchmark classification algorithms.
+This time we'll tackle an image classification task, the MNIST database of handwritten digits. These days, this is also considered a toy dataset, even though it was widely used in the past to benchmark classification algorithms.
 
 ```python
 import os
@@ -603,7 +603,7 @@ x0.shape
 
 ### Model Implementation
 
-This time we'll use `pytorch` tensors and its [`autograd`](https://pytorch.org/docs/stable/autograd.html) functionality to implement our model. This means we wont have to implement any gradient calculations!
+This time we'll use `pytorch` tensors and its [`autograd`](https://pytorch.org/docs/stable/autograd.html) functionality to implement our model. This means we won't have to implement any gradient calculations!
 
 First, let's implement $\mathrm{softmax}(\cdot)$. We need a small numerical trick to prevent large numbers from exploding the exponentiation. You can verify that this doesn't influence the result.
 
@@ -650,7 +650,7 @@ torch.autograd.grad(L, z)
              [0., 0., 0.],
              [0., 0., 0.]]),)
 
-Instead of calling `autograd.grad()` directly with specific input tensors, `pytorch` provides us with a way to calculate the derivative of a tensor w.r.t. all the tensors which are **leaves** in it's computation graph (only $\vec{z}$ in this case).
+Instead of calling `autograd.grad()` directly with specific input tensors, `pytorch` provides us with a way to calculate the derivative of a tensor w.r.t. all the tensors which are **leaves** in its computation graph (only $\vec{z}$ in this case).
 
 This can be done by calling `.backward()` on a scalar tensor. As a result, the `.grad` property of leaf tensors will be populated with the gradient:
 
@@ -710,7 +710,7 @@ def onehot(y: Tensor, n_classes: int) -> Tensor:
     return y_onehot # result has shape (N, C)
 ```
 
-If we apply it to a vector of class labels, we can see that each label gets expanded to a tensor where only the corresponding index is set to 1.
+If we apply it to a vector of class labels, we can see that each label gets expanded to a tensor, where only the corresponding index is set to 1.
 ```python
 onehot(torch.tensor([1, 3, 5, 0]), n_classes=10)
 ```
@@ -720,7 +720,7 @@ onehot(torch.tensor([1, 3, 5, 0]), n_classes=10)
             [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
             [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
 
-Our model itself will just be a class which holds the parameters tensors $\mat{W}$ and $\vec{b}$, and applies them to an input batch $\mat{X}$. Note that applying the model is a implemented in the `forward()` function. Note also that this implementation does not use `pytorch`'s `Module` class. We'll instead keep it as simple as possible, and only use`pytroch` for its tensors and automatic differentiation.
+Our model itself will just be a class which holds the parameters tensors $\mat{W}$ and $\vec{b}$, and applies them to an input batch $\mat{X}$. Note that the application of the model is implemented in the `forward()` function. Note also that this implementation does not use `pytorch`'s `Module` class. We'll instead keep it as simple as possible, and only use`pytroch` for its tensors and automatic differentiation.
 
 ```python
 class MCLogisticRegression(object):
@@ -785,13 +785,13 @@ torchviz.make_dot(loss, params=dict(W=model.W, b=model.b))
 
 ![svg|400](dl-tut2-output_95_0.svg)
 
-This graph is what allows efficient implementation of the **back-propagation** algorithm which you'll learn about in the next lecture.
+This graph is what allows efficient implementation of the **back-propagation** algorithm, which you'll learn about in the next lecture.
 
 By calling `.backward()` from the final loss tensor, pytorch automatically populated the `.grad` property of all leaves in this graph, without us having to explicitly specify them (`W` and `b`).
 
 ### Training
 
-The optimization will be as before, but now we'll take the gradients from the `grad` property of our parameter tensors. Therefore, the optimizer needs access **only** to the parameter tensors from the model. In fact,`pytorch`'s `Optimizer` classes work in the same way.
+The optimization will be as before, but now we'll take the gradients from the `grad` property of our parameter tensors. Therefore, the optimizer needs access **only** to the parameter tensors from the model. In fact, `pytorch`'s `Optimizer` classes work in the same way.
 
 As before, we'll implement this from scratch using only pytorch tensors and no other build-in features.
 
@@ -852,11 +852,11 @@ print(f'Test set accuracy pre-training: {test_set_acc*100:.2f}%')
 
     Test set accuracy pre-training: 7.65%
 
-We can see that without training, the models accuracy is roughly $1/C$, i.e. it's no better than a random guess.
+We can see that without training, the models' accuracy is roughly $1/C$, i.e. it's no better than a random guess.
 
 ### The training loop
 
-This is the crucial part of any ML pipeline where model parameters get updated iteratively.
+Training loops are a crucial part of any ML pipeline, where model parameters get updated iteratively.
 
 When using `pytorch`, the training loop will generally contain the following steps:
 
@@ -872,7 +872,7 @@ When using `pytorch`, the training loop will generally contain the following ste
 
 Notice that one pass over the entire training data is called an **epoch**.
 
-Let's define some sane training hyper-parameters and instantiate the model.
+Let's define some sane training hyperparameters and instantiate the model.
 ```python
 epochs = 10
 max_batches = 50  # limit batches so training is fast (just as a demo)
@@ -937,14 +937,14 @@ for e in range(epochs):
 
 ### Final notes
 
-* This is a very naive implementation, for example because
-    * We didn't treat the images properly.
-    * We didn't include any regularization.
+This is a very naïve implementation, for example because
+* We didn't treat the images properly.
+* We didn't include any regularization.
 
-* PyTorch provides many functions and classes that we could have used, for example:
+We could've utilized several functions and classes that PyTorch provides, such as:
   * Fully connected layer with model parameters
   * Softmax
   * SGD and many other optimizers
   * Cross entropy loss
 
-    However, the purpose here was to show an (almost) from-scratch implementation using only tensors, in order to see whats "under the hood" (more or less) of the PyTorch functions.
+However, the purpose here was to show an (almost) from-scratch implementation using only tensors, to see what's "under the hood" (more or less) of the PyTorch functions.

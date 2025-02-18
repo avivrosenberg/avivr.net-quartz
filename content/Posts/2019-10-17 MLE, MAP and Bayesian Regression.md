@@ -5,7 +5,7 @@ tags:
   - machine-learning
 related: 
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-02-15]]"
+date-modified: "[[2025-02-18]]"
 date: 2019-10-17
 enableToc: true
 ---
@@ -68,7 +68,7 @@ We are given a dataset of $N$ labelled samples $\mat{S} = \setof{ (\vec{x}^{(i)}
 * $\vec{x}^{(i)} = \left(x^{(i)}_1, \dots, x^{(i)}_n\right) \in \mathcal{X}\subseteq \mathbb{R}^{n}$ is a sample, or feature vector.
 * $y^{(i)} \in \mathcal{Y}$ is the label. Here we'll focus on simple regression tasks, where we'll usually have $\mathcal{Y}=\mathbb{R}$ for simple univariate regression.
 
-All we're assuming here that each labeled sample was drawn **independently** from some unknown joint distribution $\mathcal{D}$ over $\mathcal{X}\times\mathcal{Y}$, i.e. $(\vec{x}^{(i)},y^{(i)})\sim\mathcal{D}$. This joint distribution represents the true data-generating process to which we have no access; all we see are samples from it.
+All we're assuming here that each labeled sample was **independently** drawn from some unknown joint distribution $\mathcal{D}$ over $\mathcal{X}\times\mathcal{Y}$, i.e. $(\vec{x}^{(i)},y^{(i)})\sim\mathcal{D}$. This joint distribution represents the true data-generating process, to which we have no access; all we see are samples from it.
 
 Note also that from this perspective, our given dataset $\mat{S}$ is therefore an instance of a random variable $\rvec{S}$.
 
@@ -83,7 +83,7 @@ For example, here are a few very common hypothesis classes.
     $$
     Note that the model parameters are $\vec{\theta}=(\vec{w},b)$.
 
-* Linear with fixed basis functions: as above, but where where an arbitrary (but fixed) transformation $\phi:\mathbb{R}^{d}\to \mathbb{R}^{d'}$ is applied to the features. This transformation can be thought of as a feature extraction or pre-processing step.
+* Linear with fixed basis functions: as above, but where an arbitrary (but fixed) transformation $\phi:\mathbb{R}^{d}\to \mathbb{R}^{d'}$ is applied to the features. This transformation can be thought of as a feature extraction or pre-processing step.
     $$
     \mathcal{H} = \left\{ h : h(\vec{x}) = \vec{w}\T \phi(\vec{x})+b \right\}
     $$
@@ -104,7 +104,7 @@ For example, here are a few very common hypothesis classes.
      \right)
      \right\}
      $$
-    Where the $\mat{W}_{l},\ \vec{b}_{l}$ are weight matrices and bias vectors, respectively. In this context, the humble perceptron model is called a **neuron** instead (due to the biologically-inspired origin of this model). Note that each row of each weight matrix corresponds to a separate neuron.
+    Where the $\mat{W}_{l},\ \vec{b}_{l}$ are weight matrices and bias vectors, respectively. In this context, the humble perceptron model is called a **neuron** instead (due to the biologically inspired origin of this model). Note that each row of each weight matrix corresponds to a separate neuron.
 
 In any case, our model outputs a prediction, which we'll denote as $\hat{y}=h(\vec{x};\vec{\theta})$.
 This notation emphasizes that $h$ is a *parametrized* function. In the context of fitting (or training) the model, we'll think of $h$ mainly as a function of the parameters, $\vec{\theta}$. In the context of inference (using the model to make predictions), we'll think of $\vec{\theta}$ as fixed and think of $h$ as a function of the input data, $\vec{x}$.
@@ -125,7 +125,7 @@ This is known as the **population** loss or **out-of-sample** loss. Notice that 
 
 But can we actually solve this problem, i.e. find the minimizer for $L_{\mathcal{D}}(h)$?
 
-No, because the joint-distribution $\mathcal{D}$ is unknown. Even if it were known, we'd need to compute the expectation over all possible data points, which is generally intractable (except in very special cases).
+No, because the joint-distribution $\mathcal{D}$ is unknown. Even if it were known, we'd need to compute the expectation over all possible data points, which is generally intractable (except in special cases).
 
 Instead, given our training set $\mat{S} = \setof{ (\vec{x}^{(i)},y^{(i)}) }_{i=1}^N \sim \mathcal{D}$, we define an **empirical (in-sample) loss** $L_{\mat{S}}(\vec{\theta})$, as the measure of how well a function $h\in\mathcal{H}$ fits the dataset $\mat{S}$. Using our point-wise loss, we can define the loss over the dataset as simply the empirical mean,
 $$
@@ -138,7 +138,7 @@ No, because it depends on the randomness of the dataset sampling. In other words
 
 ### Regularization
 
-The objective may be augmented with an additional term $R(\vec{\theta})$ which depends only on the model. This is known as regularization.
+The objective may be augmented with an additional term $R(\vec{\theta})$ which depends entirely on the model. This is known as regularization.
 
 Regularization is added in order to "encourage" the model to have some additional properties. A common reason to add it is to prevent our model from being too dependent on the specific data in $\mat{S}$, which is known as overfitting or having a high-variance model. Another way to view regularization, is to think of it as a way to encode our prior (i.e., before seeing any data) beliefs about the model.
 
@@ -154,7 +154,7 @@ where $\lambda$ is a constant which determines the *regularization strength* (i.
 
 ## The probabilistic view
 
-Let's go a bit deeper and consider the actual assumptions being made in order to formulate the supervised learning problem.
+Let's go a bit deeper and consider the actual assumptions being made to formulate the supervised learning problem.
 
 Suppose we further assume that given an input feature $\vec{x}$, the label is generated by a deterministic function with some additive zero-mean Gaussian noise:
 $$
@@ -229,7 +229,7 @@ $$
 
 ### Maximum a posteriori estimation (MAP)
 
-One thing that might perhaps seem un-intuitive above the MLE approach, is that we're maximizing the probability of observing the data we have, given some model parameters. But in practice, what we face with supervised learning is the other way around: we are *given* the dataset $\mat{S}$, and want to estimate the most probable model parameters $\vec{\theta}$.
+One thing that might seem un-intuitive above the MLE approach, is that we're maximizing the probability of observing the data we have, given some model parameters. But in practice, what we face with supervised learning is the other way around: we are *given* the dataset $\mat{S}$, and want to estimate the most probable model parameters $\vec{\theta}$.
 
 In other words, it seems to make more sense to maximize the probability of the parameters given the data, i.e. $p(\vec{\theta}|\mat{S})$. Such an estimate is known as maximum a posteriori, or MAP.
 
@@ -247,14 +247,14 @@ $$
 \frac{p(\mat{S}|\vec{\theta})}{p(\mat{S})}
 }_{\text{update factor}},
 $$
-and a MAP estimate seeks to find the model parameters which maximize this posterior. Because the $p(\mat{S})$ does not affect the location of the maximum, we can ignore it, and write
+and a MAP estimate seeks the model parameters which maximize this posterior. Because the $p(\mat{S})$ does not affect the location of the maximum, we can ignore it, and write
 $$
 \hat{\vec{\theta}}_{\text{MAP}}=\arg\max_{\vec{\theta}}
 \left\{ p(\vec{\theta}) \cdot p(\mat{S}|\vec{\theta}) \right\},
 $$
 which is very similar to the MLE problem above -- it's just multiplied by the prior.
 
-At this point we need to introduce another assumption, so that we can proceed with using the prior. We'll assume that the model parameters come from a zero-mean multivariate Gaussian distribution: $p(\vec{\theta})=\cset{N}(\vec{0},\sigma_{\theta}^{2}\mat{I})$, where $\sigma_{\theta}^{2}$ is another unknown variance which we'll treat as a hyperparameter:
+At this point we need to introduce another assumption so that we can proceed with using the prior. We'll assume that the model parameters come from a zero-mean multivariate Gaussian distribution: $p(\vec{\theta})=\cset{N}(\vec{0},\sigma_{\theta}^{2}\mat{I})$, where $\sigma_{\theta}^{2}$ is another unknown variance which we'll treat as a hyperparameter:
 $$
 p(\vec{\theta}|\sigma_{\theta}^{2})=
 \frac{1}{\sqrt{ (2\pi)^{m} \sigma_{\theta}^{2} }}
@@ -302,7 +302,7 @@ If this expression seems familiar, that's because this is nothing but the MLE ob
 The key takeaway here is that adding L2 regularization is exactly equivalent to a Gaussian prior on the model parameters. It turns the MLE into a MAP.
 
 We can also see that the regularization strength is $\lambda={\sigma_{n}^{2}}/{\sigma_{\theta}^{2}}$. This has some rather intuitive interpretations which can guide our choice of the hyperparameter $\lambda$:
-* The regularization strength is inversely proportional to the variance of the prior. The more we're confident that our prior is informative (low $\sigma_{\theta}^{2}$), the more regularization we should add (high $\lambda$), and vice-versa.
+* The regularization strength is inversely proportional to the variance of the prior. The more we're confident that our prior is informative (low $\sigma_{\theta}^{2}$), the more regularization we should add (high $\lambda$), and vice versa.
 * For a fixed prior-strength ($1/\sigma_{\theta}^{2}$), we should use stronger regularization if the dataset noise is strong (high $\sigma_{n}^{2}$). This corresponds to the notion that regularization prevents overfitting to the noise in the data.
 
 ### Bayesian Regression
@@ -311,7 +311,7 @@ In both the MLE and MAP approaches, we ended up with a *point estimate* for the 
 
 In these cases, it was "best" in the sense that it corresponds to the location of the maximal value (mode) of either the likelihood $p(\mat{S}|\vec{\theta})$ or the posterior $p(\vec{\theta}|\mat{S})$ distributions. However, choosing the input value that maximizes a distribution means we're **ignoring** most of the information of that distribution.
 
-Consider the posterior $p(\vec{\theta}|\mat{S})$, which we know is also Gaussian (under the assumptions we made about the likelihood and prior), so the mode (maximum) is also the mean. But what about it's variance? Intuitively, if this distribution is very narrow (low variance), then choosing a single value $\hat{\vec{\theta}}$ to represent it makes sense. But as the variance increases, other values of $\vec{\theta}$ become more and more likely as well, yet we're still ignoring them and only choosing the value which corresponds to the mean.
+Consider the posterior $p(\vec{\theta}|\mat{S})$, which we know is also Gaussian (under the assumptions we made about the likelihood and prior), so the mode (maximum) is also the mean. But what about its variance? Intuitively, if this distribution is very narrow (low variance), then choosing a single value $\hat{\vec{\theta}}$ to represent it makes sense. But as the variance increases, other values of $\vec{\theta}$ become more and more likely as well, yet we're still ignoring them and only choosing the value which corresponds to the mean.
 
 A fully Bayesian approach would take the **full** posterior distribution into account, not just its mode. It does this by *marginalizing* over $\vec{\theta}$: i.e., summing over all possible values of $\vec{\theta}$ weighted by their probability.
 
