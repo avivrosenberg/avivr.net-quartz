@@ -14,7 +14,6 @@ export default ((opts?: Options) => {
     // const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>
-        <p>Aviv A. Rosenberg © {year}.</p>
         <ul>
           <li>
             <a href="mailto:aviv@avivr.net">
@@ -37,6 +36,12 @@ export default ((opts?: Options) => {
             </a>
           </li>
         </ul>
+        <p>© Aviv A. Rosenberg 2018-{year}.</p>
+        {/* <p>
+          Built with
+          <a href="https://obsidian.md"> Obsidian</a> and
+          <a href="https://quartz.jzhao.xyz"> Quartz</a>.
+        </p> */}
       </footer>
     )
   }
