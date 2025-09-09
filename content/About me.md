@@ -3,7 +3,7 @@ aliases:
 tags: 
 related: 
 date-created: "[[2025-01-16]]"
-date-modified: "[[2025-01-28]]"
+date-modified: "[[2025-09-09]]"
 permalink: About
 title: About me
 ---
@@ -14,7 +14,7 @@ title: About me
 
 ![[aviv_06b.jpg|about_bio_pic|300]]
 
-I'm a researcher, data scientist and a generally curious person.
+I'm a researcher, scientist and a generally curious person.
 
 I like anything involving math and code coming together to solve real problems. My main toolset comes from the domains of machine learning, statistics, data science, signal processing and software engineering.
 
@@ -25,4 +25,4 @@ During my PhD at the [Technion Computer Science Faculty](https://cs.technion.ac.
 - Creating new tools for analyzing data distributions in high-dimensions [](https://arxiv.org/abs/2205.14977).
 
 %%industry experience%%
-Over the years, I've also worked in various industry roles. Currently, I'm a researcher at [Sibylla](https://sibylla.io), a fintech startup, where I develop machine-learning-based strategies for portfolio construction in equity markets.
+Over the years, I've also worked in various industry roles. Currently, I'm a research scientist at [Hemispheric](https://hemispheric.ai/), a neuroscience startup developing foundation models for non-invasively decoding brain activity.
