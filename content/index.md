@@ -4,7 +4,7 @@ tags:
 related: 
 title: avivr.net
 date-created: "[[2025-01-12]]"
-date-modified: "[[2025-01-28]]"
+date-modified: "[[2025-12-05]]"
 enableToc: false
 date:
 ---
@@ -15,8 +15,13 @@ date:
 
 Welcome to my home on the web.
 
-I write about things I'm interested in, especially when I want to understand them better. Or if I just don't want to forget. This would be mainly around machine learning and data science, but might include other stuff too.
+I write technical posts about things I like learning about: machine learning, statistics, data science, optimization, signal processing, and similar topics.
 
-This site is relatively new, so I'm still porting over content into it.
+%%
+Writing helps me think and understand better.
 
-In the meantime, you can check out some recent [[Posts/|posts]] or learn more [[About me|about me]].
+The posts are written with myself as the target audience - content I wish I had when I was first learning each topic, or that would help me relearn if I forget it in the future.
+They're technical and require a math or engineering background. I focus on the key mathematical ideas and intuitions behind them, without being overly rigorous. I usually include hands-on code examples to show how the theory is actually applied in the real world.
+%%
+
+You can check out my [[Posts/|posts]] or learn more [[About me|about me]].
