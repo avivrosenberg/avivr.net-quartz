@@ -6,7 +6,7 @@ tags:
   - optimization
 related:
 date-created: "[[2024-12-06]]"
-date-modified: "[[2025-12-20]]"
+date-modified: "[[2025-12-21]]"
 title: Bilevel Differentiable Optimization
 date: 2020-12-05
 enableToc: true
@@ -872,7 +872,4 @@ Our time-series example was admittedly somewhat contrived. Ridge regression has 
 
 I think this topic showcases the generality and power of frameworks such as PyTorch `autograd`, which are becoming very useful additions to include in a researcher's computational toolbox. Hopefully, this post provided useful insights regarding both the theoretical and practical aspects of differentiable optimization.
 
-[^1]: This is a hand-wavy way of saying that the function is Lipschitz-continuous. A Lipschitz continuous function is bounded in how much its output can change when changing the input. This means the function must be smooth in some sense, i.e. it can't "jump" too much for small changes of the input. A function $f(\vec{x})$ is $L$-Lipschitz continuous if there exists a constant $L>0$ such that for any $\vec{x}_{1},\vec{x}_{2}\in \mathbb{R}^{d}$
-$$
-\norm{f(\vec{x}_{1})-f(\vec{x}_{2})} \leq L \cdot \norm{\vec{x}_{1}-\vec{x}_{2}}.
-$$
+[^1]: This is a hand-wavy way of saying that the function is Lipschitz-continuous. A Lipschitz continuous function is bounded in how much its output can change when changing the input. This means the function must be smooth in some sense, i.e. it can't "jump" too much for small changes of the input. A function $f(\vec{x})$ is $L$-Lipschitz continuous if there exists a constant $L>0$ such that for any $\vec{x}_{1},\vec{x}_{2}\in \mathbb{R}^{d}$ we have $\norm{f(\vec{x}_{1})-f(\vec{x}_{2})} \leq L \cdot \norm{\vec{x}_{1}-\vec{x}_{2}}.$
